@@ -1,30 +1,28 @@
 package com.minzzigle.codetoenglish.hackerrank.question1;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+/**
+ * 입력값이 주어졌을 때, 입력값을 역순으로 출력한다.
+ * [1, 4, 3, 2] => [2, 3, 4, 1]
+ *
+ * https://www.hackerrank.com/challenges/arrays-ds/problem
+ */
 
 public class Arrays {
-    public void solutions() {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int arr[] = new int[n];
-
-        for(int arr_i=0; arr_i < n; arr_i++){
-            arr[arr_i] = in.nextInt();
-        }
-
-        //int newArr[] = new int[n];
-        //for (int i= n-1; i>=0; i--){
-        //    newArr[n-i-1]= arr[i];
-        //}
-        //System.out.println(newArr);
-
-        List newArr = new ArrayList<Integer>();
+    public String solutions(int [] input, int size) {
         String ans = "";
-        for (int i = n-1; i >= 0; i--){
-            ans += arr[i] + " ";
+        for (int i = size-1; i >= 0; i--){
+            ans += input[i] + " ";
         }
-        System.out.println(ans);
+        return ans;
+    }
+
+    public String solutions_recursive(int [] input, int idx) {
+        if(input.length - 1 == idx) {
+            return String.valueOf(input[idx]);
+        }
+
+        String prefix = solutions_recursive(input, idx + 1);
+
+        return prefix + " " + input[idx];
     }
 }
